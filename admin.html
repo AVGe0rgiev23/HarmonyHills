@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | PremiumStay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1>🏠 PremiumStay Admin</h1>
+                <span class="admin-badge">Administrator</span>
+            </div>
+            <div class="header-right">
+                <div class="admin-profile">
+                    <span id="admin-name">Loading...</span>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" onclick="toggleProfileMenu()">
+                            <div class="profile-avatar">👤</div>
+                        </button>
+                        <div class="dropdown-menu" id="profile-menu">
+                            <a href="#" onclick="viewProfile()">Profile</a>
+                            <a href="#" onclick="changePassword()">Change Password</a>
+                            <a href="index.html">View Site</a>
+                            <hr>
+                            <a href="#" onclick="signOut()" class="sign-out">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item active">
+                    <a href="#dashboard" onclick="showSection('dashboard')">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#users" onclick="showSection('users')">
+                        <span class="nav-icon">👥</span>
+                        Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#apartments" onclick="showSection('apartments')">
+                        <span class="nav-icon">🏠</span>
+                        Apartments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#inquiries" onclick="showSection('inquiries')">
+                        <span class="nav-icon">💬</span>
+                        Inquiries
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#analytics" onclick="showSection('analytics')">
+                        <span class="nav-icon">📈</span>
+                        Analytics
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#settings" onclick="showSection('settings')">
+                        <span class="nav-icon">⚙️</span>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="admin-section active">
+            <div class="section-header">
+                <h2>Dashboard Overview</h2>
+                <p>Welcome back! Here's what's happening with your properties.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <h3 id="total-users">0</h3>
+                        <p>Total Users</p>
+                        <span class="stat-change positive">+12% this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏠</div>
+                    <div class="stat-content">
+                        <h3 id="total-apartments">0</h3>
+                        <p>Active Listings</p>
+                        <span class="stat-change positive">+3 new</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💬</div>
+                    <div class="stat-content">
+                        <h3 id="total-inquiries">0</h3>
+                        <p>New Inquiries</p>
+                        <span class="stat-change neutral">This week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <h3>$24,500</h3>
+                        <p>Monthly Revenue</p>
+                        <span class="stat-change positive">+8% vs last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Recent User Registrations</h3>
+                    <div class="recent-users" id="recent-users">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Latest Inquiries</h3>
+                    <div class="recent-inquiries" id="recent-inquiries">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Section -->
+        <section id="users-section" class="admin-section">
+            <div class="section-header">
+                <h2>User Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="exportUsers()">Export Users</button>
+                    <button class="btn btn-secondary" onclick="refreshUsers()">Refresh</button>
+                </div>
+            </div>
+
+            <!-- Users Filter -->
+            <div class="filter-bar">
+                <input type="text" id="user-search" placeholder="Search users..." onkeyup="filterUsers()">
+                <select id="user-role-filter" onchange="filterUsers()">
+                    <option value="">All Roles</option>
+                    <option value="user">Users</option>
+                    <option value="admin">Admins</option>
+                </select>
+                <select id="user-status-filter" onchange="filterUsers()">
+                    <option value="">All Status</option>
+                    <option value="verified">Verified</option>
+                    <option value="unverified">Unverified</option>
+                </select>
+            </div>
+
+            <!-- Users Table -->
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Joined</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <tr>
+                            <td colspan="7" class="loading">Loading users...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Apartments Section -->
+        <section id="apartments-section" class="admin-section">
+            <div class="section-header">
+                <h2>Apartment Listings</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showAddApartmentModal()">Add New Apartment</button>
+                    <button class="btn btn-secondary" onclick="refreshApartments()">Refresh</button>
+                </div>
+            </div>
+
+            <!-- Apartments Grid -->
+            <div class="apartments-grid" id="apartments-grid">
+                <div class="loading">Loading apartments...</div>
+            </div>
+        </section>
+
+        <!-- Inquiries Section -->
+        <section id="inquiries-section" class="admin-section">
+            <div class="section-header">
+                <h2>Customer Inquiries</h2>
+                <div class="section-actions">
+                    <button class="btn btn-secondary" onclick="markAllAsRead()">Mark All Read</button>
+                    <button class="btn btn-secondary" onclick="refreshInquiries()">Refresh</button>
+                </div>
+            </div>
+
+            <!-- Inquiries List -->
+            <div class="inquiries-list" id="inquiries-list">
+                <div class="loading">Loading inquiries...</div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="admin-section">
+            <div class="section-header">
+                <h2>Analytics & Reports</h2>
+                <p>Track your business performance and user engagement.</p>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>User Growth</h3>
+                    <div class="chart-placeholder">
+                        <p>📈 Chart visualization would go here</p>
+                        <p>Integration with Chart.js or similar library</p>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <h3>Popular Apartments</h3>
+                    <div class="chart-placeholder">
+                        <p>📊 Bar chart showing most viewed apartments</p>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <h3>Inquiry Trends</h3>
+                    <div class="chart-placeholder">
+                        <p>📉 Line chart showing inquiry patterns</p>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <h3>Revenue Overview</h3>
+                    <div class="chart-placeholder">
+                        <p>💰 Revenue tracking and projections</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings-section" class="admin-section">
+            <div class="section-header">
+                <h2>System Settings</h2>
+                <p>Configure your application settings and preferences.</p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <h3>General Settings</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>Site Name</label>
+                            <input type="text" value="PremiumStay" id="site-name">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email</label>
+                            <input type="email" value="info@premiumstay.com" id="contact-email">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" value="(555) 123-4567" id="contact-phone">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="saveGeneralSettings()">Save Changes</button>
+                    </form>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Email Settings</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                Send welcome emails to new users
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                Email notifications for new inquiries
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox">
+                                Weekly analytics reports
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="saveEmailSettings()">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Apartment Modal -->
+    <div class="modal" id="add-apartment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Apartment</h3>
+                <button class="modal-close" onclick="closeAddApartmentModal()">&times;</button>
+            </div>
+            <form class="apartment-form" id="apartment-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price ($/month)</label>
+                        <input type="number" name="price" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Bedrooms</label>
+                        <select name="bedrooms" required>
+                            <option value="1">1 Bedroom</option>
+                            <option value="2">2 Bedrooms</option>
+                            <option value="3">3 Bedrooms</option>
+                            <option value="4">4+ Bedrooms</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bathrooms</label>
+                        <select name="bathrooms" required>
+                            <option value="1">1 Bathroom</option>
+                            <option value="2">2 Bathrooms</option>
+                            <option value="3">3+ Bathrooms</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Features (comma-separated)</label>
+                    <input type="text" name="features" placeholder="WiFi, Parking, Pet Friendly, etc.">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddApartmentModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Apartment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

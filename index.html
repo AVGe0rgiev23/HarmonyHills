@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Apartment for Rent - Downtown Living | PremiumStay</title>
+    <meta name="description" content="Luxury 2-bedroom apartment for rent in downtown. Fully furnished, pet-friendly, with parking. Available now. Book your visit today!">
+    <meta name="keywords" content="apartment rental, downtown apartment, furnished apartment, pet friendly, parking included">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Modern Apartment for Rent - Downtown Living">
+    <meta property="og:description" content="Luxury 2-bedroom apartment for rent in downtown. Fully furnished, pet-friendly, with parking.">
+    <meta property="og:image" content="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg">
+    <meta property="og:url" content="https://premiumstay.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-bar" id="progress-bar"></div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🏠 PremiumStay</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#features" class="nav-link">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#location" class="nav-link">Location</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <button class="download-brochure-btn" onclick="downloadBrochure()">📄 Brochure</button>
+                <div class="nav-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sticky Booking Panel -->
+    <div class="sticky-booking-panel" id="sticky-booking">
+        <div class="booking-content">
+            <div class="booking-price">$1,200<span>/month</span></div>
+            <button class="booking-btn" onclick="scrollToSection('contact')">Book Visit</button>
+        </div>
+    </div>
+
+    <!-- Hero Section with Image Slider -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')"></div>
+            <div class="slide" style="background-image: url('https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title typewriter" id="typewriter-text"></h1>
+            <h3 class="hero-subtitle">Spacious · Fully Furnished · Excellent Location</h3>
+            <div class="hero-rating">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <span>Rated 5/5 by previous tenants</span>
+            </div>
+            <div class="hero-badges">
+                <span class="trust-badge">✅ Verified Owner</span>
+                <span class="trust-badge">🔒 Safe Neighborhood</span>
+                <span class="trust-badge">💰 No Hidden Fees</span>
+            </div>
+            <button class="cta-button" onclick="scrollToSection('contact')">Book a Visit</button>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
+            <button class="slider-btn next" onclick="changeSlide(1)">›</button>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section parallax-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Apartment Features</h2>
+            <div class="features-grid">
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">🛏️</div>
+                    <h3>2 Bedrooms</h3>
+                    <p>Spacious bedrooms with built-in wardrobes</p>
+                </div>
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">🛁</div>
+                    <h3>2 Bathrooms</h3>
+                    <p>Modern bathrooms with premium fixtures</p>
+                </div>
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">📶</div>
+                    <h3>High-Speed Wi-Fi</h3>
+                    <p>Complimentary fiber internet included</p>
+                </div>
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">❄️</div>
+                    <h3>Air Conditioning</h3>
+                    <p>Climate control in all rooms</p>
+                </div>
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">🏠</div>
+                    <h3>Fully Furnished</h3>
+                    <p>Move-in ready with quality furniture</p>
+                </div>
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">🔑</div>
+                    <h3>Private Entrance</h3>
+                    <p>Your own secure entrance</p>
+                </div>
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">🚗</div>
+                    <h3>Parking Available</h3>
+                    <p>Dedicated parking space included</p>
+                </div>
+                <div class="feature-card animated-card">
+                    <div class="feature-icon animated-icon">🐕</div>
+                    <h3>Pet Friendly</h3>
+                    <p>Welcoming to your furry friends</p>
+                </div>
+            </div>
+            <div class="highlight-badges">
+                <span class="badge pulse">Newly Renovated</span>
+                <span class="badge pulse">Available Now</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Apartment?</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h3>Our Apartment</h3>
+                    <ul class="comparison-list">
+                        <li class="advantage">✅ $1,200/month (All inclusive)</li>
+                        <li class="advantage">✅ Fully furnished</li>
+                        <li class="advantage">✅ Free parking included</li>
+                        <li class="advantage">✅ High-speed fiber internet</li>
+                        <li class="advantage">✅ Pet friendly</li>
+                        <li class="advantage">✅ 24/7 security</li>
+                    </ul>
+                </div>
+                <div class="comparison-card">
+                    <h3>Other Apartments</h3>
+                    <ul class="comparison-list">
+                        <li class="disadvantage">❌ $1,400+ (Utilities extra)</li>
+                        <li class="disadvantage">❌ Unfurnished</li>
+                        <li class="disadvantage">❌ $150/month parking</li>
+                        <li class="disadvantage">❌ Basic internet</li>
+                        <li class="disadvantage">❌ No pets allowed</li>
+                        <li class="disadvantage">❌ Limited security</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Photo Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')">
+                    <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Living room" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Living Room</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')">
+                    <img src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Kitchen" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Kitchen</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')">
+                    <img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Bedroom" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Master Bedroom</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/342800/pexels-photo-342800.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')">
+                    <img src="https://images.pexels.com/photos/342800/pexels-photo-342800.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Bathroom" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Bathroom</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/273209/pexels-photo-273209.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')">
+                    <img src="https://images.pexels.com/photos/273209/pexels-photo-273209.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Balcony" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Balcony View</span>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')">
+                    <img src="https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Dining area" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Dining Area</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floor Plan Section -->
+    <section class="floor-plan-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Floor Plan</h2>
+            <div class="floor-plan-container">
+                <div class="floor-plan">
+                    <div class="room living-room" onclick="showRoomInfo('living')">
+                        <span class="room-label">Living Room</span>
+                    </div>
+                    <div class="room kitchen" onclick="showRoomInfo('kitchen')">
+                        <span class="room-label">Kitchen</span>
+                    </div>
+                    <div class="room bedroom1" onclick="showRoomInfo('bedroom1')">
+                        <span class="room-label">Bedroom 1</span>
+                    </div>
+                    <div class="room bedroom2" onclick="showRoomInfo('bedroom2')">
+                        <span class="room-label">Bedroom 2</span>
+                    </div>
+                    <div class="room bathroom1" onclick="showRoomInfo('bathroom1')">
+                        <span class="room-label">Bath 1</span>
+                    </div>
+                    <div class="room bathroom2" onclick="showRoomInfo('bathroom2')">
+                        <span class="room-label">Bath 2</span>
+                    </div>
+                    <div class="room balcony" onclick="showRoomInfo('balcony')">
+                        <span class="room-label">Balcony</span>
+                    </div>
+                </div>
+                <div class="room-info" id="room-info">
+                    <h3>Click on any room to see details</h3>
+                    <p>Explore the apartment layout by clicking on different rooms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Tour Section -->
+    <section class="virtual-tour-section">
+        <div class="container">
+            <h2 class="section-title">Virtual Tour</h2>
+            <div class="video-wrapper">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability Calendar Section -->
+    <section class="calendar-section">
+        <div class="container">
+            <h2 class="section-title">Availability Calendar</h2>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="calendar-nav" onclick="changeMonth(-1)">‹</button>
+                    <h3 id="calendar-month">December 2024</h3>
+                    <button class="calendar-nav" onclick="changeMonth(1)">›</button>
+                </div>
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- Calendar will be generated by JavaScript -->
+                </div>
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <span class="legend-color available"></span>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color occupied"></span>
+                        <span>Occupied</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color selected"></span>
+                        <span>Selected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neighborhood Section -->
+    <section class="neighborhood-section parallax-section" id="location">
+        <div class="container">
+            <h2 class="section-title">Prime Location</h2>
+            <div class="neighborhood-content">
+                <div class="neighborhood-info">
+                    <h3>Downtown Living at Its Best</h3>
+                    <ul class="neighborhood-list">
+                        <li>🚇 5 minutes walk to Metro Station</li>
+                        <li>🛒 Shopping center across the street</li>
+                        <li>🏥 Hospital within 10 minutes</li>
+                        <li>🎓 Top-rated schools nearby</li>
+                        <li>🌳 Central Park just 2 blocks away</li>
+                        <li>🍽️ Restaurants and cafes in walking distance</li>
+                        <li>🔒 Safe, well-lit neighborhood</li>
+                    </ul>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.74844097932847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259af15f27685%3A0x36746ca3354c1e27!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1635959592804!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing & Availability</h2>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Monthly Rent</h3>
+                    <div class="price">$1,200<span>/month</span></div>
+                </div>
+                <div class="pricing-details">
+                    <h4>What's Included:</h4>
+                    <ul>
+                        <li>✅ Electricity & Water</li>
+                        <li>✅ High-speed Internet</li>
+                        <li>✅ Heating & Cooling</li>
+                        <li>✅ Parking Space</li>
+                        <li>✅ Building Maintenance</li>
+                        <li>✅ 24/7 Security</li>
+                    </ul>
+                </div>
+                <div class="availability">
+                    <span class="available-badge pulse">Available Now</span>
+                    <p>Move-in ready • Minimum 6-month lease</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Is the apartment pet-friendly?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We welcome pets with a small additional deposit. Please let us know about your furry friend when you apply.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What's included in the rent?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All utilities are included: electricity, water, heating, cooling, high-speed internet, parking, and building maintenance.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How long is the minimum lease?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer flexible lease terms with a minimum of 6 months. Longer leases may qualify for discounts.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Is a security deposit required?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we require a security deposit equal to one month's rent, which is fully refundable upon move-out.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section parallax-section">
+        <div class="container">
+            <h2 class="section-title">What Our Tenants Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-card active">
+                    <div class="testimonial-content">
+                        <div class="testimonial-photo">
+                            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" alt="Sarah Johnson">
+                        </div>
+                        <p>"Living here has been amazing! The location is perfect, and the apartment is exactly as advertised. The landlord is responsive and professional."</p>
+                        <div class="testimonial-author">
+                            <strong>Sarah Johnson</strong>
+                            <span>Tenant since 2023</span>
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-photo">
+                            <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" alt="Mike Chen">
+                        </div>
+                        <p>"Beautiful apartment in a great neighborhood. Everything is included, and the building is well-maintained. I couldn't be happier with my choice!"</p>
+                        <div class="testimonial-author">
+                            <strong>Mike Chen</strong>
+                            <span>Tenant since 2022</span>
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-photo">
+                            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" alt="Emily Rodriguez">
+                        </div>
+                        <p>"The apartment exceeded my expectations. Modern, clean, and in a fantastic location. The whole rental process was smooth and hassle-free."</p>
+                        <div class="testimonial-author">
+                            <strong>Emily Rodriguez</strong>
+                            <span>Tenant since 2023</span>
+                            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="testimonial-prev" onclick="changeTestimonial(-1)">‹</button>
+                <button class="testimonial-next" onclick="changeTestimonial(1)">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Schedule Your Visit</h3>
+                    <p>Ready to see your new home? Contact us today to schedule a viewing or ask any questions.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <span>(555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <span>info@premiumstay.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Address:</strong>
+                            <span>123 Downtown Street, City, State 12345</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone (Optional)">
+                    </div>
+                    <div class="form-group">
+                        <select id="inquiry-type" name="inquiry-type" required>
+                            <option value="">Select Inquiry Type</option>
+                            <option value="viewing">Schedule Viewing</option>
+                            <option value="application">Submit Application</option>
+                            <option value="general">General Question</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                    <div class="form-success" id="form-success">
+                        ✅ Thank you! We'll get back to you within 24 hours.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>🏠 PremiumStay</h3>
+                    <p>Your comfort is our priority</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#location">Location</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="mailto:info@premiumstay.com" class="social-icon" title="Email">📧</a>
+                    <a href="tel:+15551234567" class="social-icon" title="Phone">📱</a>
+                    <a href="https://instagram.com/premiumstay" class="social-icon" title="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PremiumStay. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Gallery -->
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="Gallery image">
+        </div>
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5551234567" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <span class="whatsapp-icon">💬</span>
+    </a>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">🏠</div>
+            <div class="preloader-text">Loading your dream home...</div>
+            <div class="preloader-spinner"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
